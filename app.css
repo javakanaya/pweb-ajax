@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto Slab';
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.5rem;
     font-weight: 300;
 }
@@ -48,7 +50,6 @@ input.button {
 h1 {
     font-size: 5rem;
     text-transform: uppercase;
-    font-family: 'Passion One';
     font-weight: 400;
     letter-spacing: 2px;
     line-height: 0.8;

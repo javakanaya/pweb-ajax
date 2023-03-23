@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax - JQuery</title>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 </head>
 
 <body>
@@ -19,7 +24,8 @@
                 </div>
                 <div class="input-box">
                     <label for="email" id="email_label">Email</label>
-                    <input type="email" name="email" id="email" placeholder="example@tutsplus.com" class="text-input" />
+                    <input type="email" name="email" id="email" placeholder="example@tutsplus.com" class="text-input"
+                        required />
                 </div>
                 <div class="input-box">
                     <label for="phone" id="phone_label">Phone</label>
@@ -33,6 +39,36 @@
             <p>We are waiting to hear from you!</p>
         </div>
     </div>
+    <script>
+        $(function () {
+            function sendData($form) {
+                let dataString = $form.serialize();
+
+                return $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: dataString
+                });
+            }
+
+            $("form").validate({
+                submitHandler: function (form) {
+                    sendData($(form))
+                        .done(function () {
+                            $("#contact_form").html("<div id='message'></div>");
+
+                            $("#message").html("<h2>Contact Form Submitted!</h2>")
+                                .append("<p>We will be in touch soon.</p>")
+                                .hide()
+                                .fadeIn(1500);
+                        })
+                        .fail(function () {
+                            alert("Error submit form")
+                        });
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
